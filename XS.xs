@@ -14,14 +14,15 @@ SV* parse_cookie(char * cs) {
     int i ;
     char *p,*q,*decode;
     char buf[COOKIE_LENGTH];
+    AV *array;
+    HV *hash;
 
     decode=(char *) malloc (COOKIE_LENGTH);
 
     memset(buf,0,COOKIE_LENGTH);
     strcpy(buf,cs);
 
-    AV *array;
-    HV *hash=newHV();
+    hash=newHV();
 
     p = q = buf;
     while(*p){
