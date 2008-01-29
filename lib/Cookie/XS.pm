@@ -1,4 +1,4 @@
-package Cookie::Parser;
+package Cookie::XS;
 
 use strict;
 use warnings;

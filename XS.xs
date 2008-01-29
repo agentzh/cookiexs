@@ -2,14 +2,15 @@
 #include "perl.h"
 #include "XSUB.h"
 #include "INLINE.h"
-
-//static char *encode_hex_str(const char*, char **);
-int decode_hex_str(const char *,char **);
-
 #define COOKIE_LENGTH 2048
 
-SV* parse_cookie(char * cs)
-{
+//static char *encode_hex_str(const char*, char **);
+extern char** XS_unpack_charPtrPtr(SV* arg);
+extern void XS_pack_charPtrPtr( SV* arg, char** array, int count);
+
+int decode_hex_str(const char *,char **);
+
+SV* parse_cookie(char * cs) {
     int i ;
     char *p,*q,*decode;
     char buf[COOKIE_LENGTH];
@@ -120,7 +121,7 @@ int decode_hex_str(const char *str,char **out)
 }
 
 
-MODULE = Cookie::Parser	PACKAGE = Cookie::Parser
+MODULE = Cookie::XS	PACKAGE = Cookie::XS
 
 PROTOTYPES: DISABLE
 

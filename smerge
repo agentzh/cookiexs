@@ -1,0 +1,4 @@
+#!/bin/sh
+
+svk smerge -B -I -l //mirror/hack/cookie-parser //mirror/cookieparser
+

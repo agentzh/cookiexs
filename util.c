@@ -25,7 +25,6 @@ char** XS_unpack_charPtrPtr(SV* arg) {
   return array;
 }
 
-
 void XS_pack_charPtrPtr( SV* arg, char** array, int count) {
   int i;
   AV* avref;
