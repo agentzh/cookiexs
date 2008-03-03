@@ -1,0 +1,20 @@
+inc/Module/Install.pm
+inc/Module/Install/Base.pm
+inc/Module/Install/Can.pm
+inc/Module/Install/Compiler.pm
+inc/Module/Install/Fetch.pm
+inc/Module/Install/Makefile.pm
+inc/Module/Install/Metadata.pm
+inc/Module/Install/Win32.pm
+inc/Module/Install/WriteAll.pm
+INLINE.h
+lib/Cookie/XS.pm
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+MANIFEST.SKIP~
+t/01-sanity.t
+t/99-pod.t
+t/99-pod-coverage.t
+util.c
+XS.xs
