@@ -3,9 +3,6 @@ package Cookie::XS;
 use strict;
 use warnings;
 
-use FindBin;
-use Data::Dumper;
-
 our $VERSION;
 
 use XSLoader;
