@@ -6,11 +6,12 @@ use warnings;
 use FindBin;
 use Data::Dumper;
 
-our $VERSION = '0.04';
+our $VERSION;
 
 use XSLoader;
 BEGIN {
-    XSLoader::load(__PACKAGE__);
+    $VERSION = '0.04';
+    XSLoader::load(__PACKAGE__, $VERSION);
 }
 
 sub fetch {
@@ -29,6 +30,10 @@ __END__
 =head1 NAME
 
 Cookie::XS - Cookie parser in C
+
+=head1 VERSION
+
+This document describes Cookie::XS 0.04 released on Mar 3, 2008.
 
 =head1 SYNOPSIS
 
