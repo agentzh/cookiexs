@@ -1,4 +1,6 @@
 ^smerge
 \.bak$
 ^Makefile$
+\.swp$
+\.tar\.gz$
 ~$

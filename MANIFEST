@@ -14,10 +14,10 @@ inc/Module/Install/WriteAll.pm
 INLINE.h
 lib/Cookie/XS.pm
 Makefile.PL
-README
 MANIFEST			This list of files
 MANIFEST.SKIP
 META.yml
+README
 t/01-sanity.t
 t/99-pod-coverage.t
 t/99-pod.t
