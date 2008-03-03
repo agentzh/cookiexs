@@ -19,7 +19,6 @@ SV* parse_cookie(char * cs) {
 
     decode=(char *) malloc (COOKIE_LENGTH);
 
-    memset(buf,0,COOKIE_LENGTH);
     strcpy(buf,cs);
 
     hash=newHV();
@@ -33,7 +32,7 @@ SV* parse_cookie(char * cs) {
              hv_store(hash,decode,strlen(decode),newRV_noinc((SV *)array),0);
             q=p;
         } else if( *p==';' && *(p+1) == ' ') {
-            memset(p,0,2); p+=2;
+            *p = 0; p+=2;
             decode_hex_str(q,&decode);
             av_push(array,newSVpvf("%s",decode));
             q=p;
