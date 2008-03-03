@@ -1,4 +1,4 @@
 ^smerge
 \.bak$
 ^Makefile$
-
+~$

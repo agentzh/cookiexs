@@ -12,7 +12,6 @@ lib/Cookie/XS.pm
 Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
-MANIFEST.SKIP~
 t/01-sanity.t
 t/99-pod.t
 t/99-pod-coverage.t
