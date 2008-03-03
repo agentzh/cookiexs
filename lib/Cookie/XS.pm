@@ -10,7 +10,7 @@ our $VERSION;
 
 use XSLoader;
 BEGIN {
-    $VERSION = '0.04';
+    $VERSION = '0.05';
     XSLoader::load(__PACKAGE__, $VERSION);
 }
 
@@ -29,11 +29,11 @@ __END__
 
 =head1 NAME
 
-Cookie::XS - Cookie parser in C
+Cookie::XS - HTTP Cookie parser in C
 
 =head1 VERSION
 
-This document describes Cookie::XS 0.04 released on Mar 3, 2008.
+This document describes Cookie::XS 0.05 released on Mar 3, 2008.
 
 =head1 SYNOPSIS
 
@@ -64,22 +64,26 @@ This document describes Cookie::XS 0.04 released on Mar 3, 2008.
 
 =head1 DESCRIPTION
 
-This module implements a very simple parser for cookies used in HTTP applications. We've found CGI::Simple::Cookie rather insufficient in our L<OpenResty> project, hence the rewrite.
+This module implements a very simple parser for cookies used in HTTP applications. We've found L<CGI::Simple::Cookie> and L<CGI::Cookie> rather insufficient according to the profiling results for our L<OpenResty> project, hence the rewrite in C.
 
-This stuff is still in B<pre-alpha> stage and the API is still in flux. We're just following the "release early, releaes often" guideline. So please check back often ;)
+This library is still in B<pre-alpha> stage and the API is still in flux. We're just following the "release early, releaes often" guideline. So please check back often ;)
 
 =head1 METHODS
 
-We currently implement 2 static methods, C<parse> and C<fetch>. They work mostly the same way as those methods found in L<CGI::Cookie> and L<CGI::Simple::Cookie> but with the exception that our version returns plain Perl data structures rather than hashes of Perl objects for performance reasons.
+We currently provide 2 static methods, C<parse> and C<fetch>. They work mostly the same way as those methods found in L<CGI::Cookie> and L<CGI::Simple::Cookie> but with the exception that our version returns plain Perl data structures rather than hashes of Perl objects (due to performance considerations).
 
-We'll implement some dump methods in the near future.
+We'll implement some cookie dump methods in the near future.
+
+=head1 BUGS
+
+There must be some serious bugs lurking somewhere. We haven't done comprehensive testing for our code yet. It's a TODO.
 
 =head1 SOURCE CONTROL
 
 For the very latest version of this module, check out the source from
 the SVN repos below:
 
-L<http://svn.openfondry.org/cookieparser>
+L<http://svn.openfoundry.org/cookieparser>
 
 There is anonymous access to all. If you'd like a commit bit, please let
 us know. :)
@@ -95,12 +99,17 @@ L<CGI::Cookie>, L<CGI::Cookie::Simple>.
 
 =head1 AUTHOR
 
-yuting E<gt>yuting at alibaba-inc dot comE<lt>.
-agentzh E<gt>agentzh at yahoo dot cnE<lt>.
+=over
+
+=item yuting C<< <yuting at alibaba-inc.com> >>
+
+=item agentzh C<< <agentzh at yahoo.cn> >>
+
+=back
 
 =head1 COPYRIGHT
 
-Copyright (c) 2008 by Yahoo! Dhina EEEE Works, Alibaba Inc.
+Copyright (c) 2008 by Yahoo! China EEEE Works, Alibaba Inc.
 
 =head1 License
 
