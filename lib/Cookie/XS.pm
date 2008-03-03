@@ -61,7 +61,7 @@ This document describes Cookie::XS 0.06 released on Mar 3, 2008.
 
 =head1 DESCRIPTION
 
-This module implements a very simple parser for cookies used in HTTP applications. We've found L<CGI::Simple::Cookie> and L<CGI::Cookie> rather insufficient according to the profiling results for our L<OpenResty> project, hence the rewrite in C.
+This module implements a very simple parser for cookies used in HTTP applications. We've found L<CGI::Simple::Cookie> and L<CGI::Cookie> rather slow according to the profiling results for our L<OpenResty> project, hence the rewrite in C.
 
 This library is still in B<pre-alpha> stage and the API is still in flux. We're just following the "release early, releaes often" guideline. So please check back often ;)
 
