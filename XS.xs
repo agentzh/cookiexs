@@ -132,6 +132,6 @@ parse_cookie (cs)
 
 int
 decode_hex_str (str, out)
-	const char *	str
+	char *	str
 	char **	out
 
