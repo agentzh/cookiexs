@@ -71,6 +71,21 @@ We currently provide 2 static methods, C<parse> and C<fetch>. They work mostly t
 
 We'll implement some cookie dump methods in the near future.
 
+=over
+
+=item C<< $ref = Cookie::XS->parse($raw_cookie) >>
+
+Parses C<$raw_cookie> and returns the reference of a hash of arrays. The keys
+of the hash are cookie variables' names while the values of the hash are lists of cookie variable's values.
+
+There is a length limit on the C<$raw_cookie>. If C<$raw_cookie> is longer than 4 KB (i.e. 4 * 1024 bytes, excluding the trailing '\0'), the overflowing part will be truncated.
+
+=item C<< $ref = Cookie::XS->fetch() >>
+
+
+
+=back
+
 =head1 SOURCE CONTROL
 
 For the very latest version of this module, check out the source from
