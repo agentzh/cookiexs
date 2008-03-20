@@ -80,6 +80,8 @@ of the hash are cookie variables' names while the values of the hash are lists o
 
 There is a length limit on the C<$raw_cookie>. If C<$raw_cookie> is longer than 4 KB (i.e. 4 * 1024 bytes, excluding the trailing '\0'), the overflowing part will be truncated.
 
+Also note that, C<fetch> does not assume any encoding on the cookie values. It just decodes the encoded entries verbatim and treat them as plain "binary" stuff.
+
 =item C<< $ref = Cookie::XS->fetch() >>
 
 Reads the raw cookie from the C<HTTP_COOKIE> and C<COOKIE> environments
