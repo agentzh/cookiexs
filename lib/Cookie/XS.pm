@@ -82,7 +82,10 @@ There is a length limit on the C<$raw_cookie>. If C<$raw_cookie> is longer than 
 
 =item C<< $ref = Cookie::XS->fetch() >>
 
-
+Reads the raw cookie from the C<HTTP_COOKIE> and C<COOKIE> environments
+(which are usually set by HTTP servers like lighttd or apache) and then
+parses the value using the C<parse> method and finally returns the
+results.
 
 =back
 
