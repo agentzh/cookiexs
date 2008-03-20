@@ -17,8 +17,8 @@ SV* parse_cookie(char * cs) {
     AV *array;
     HV *hash;
 
-    decode=(char *) malloc (COOKIE_LENGTH);
-    strncpy(buf,cs,COOKIE_LENGTH);
+    decode=(char *) malloc (COOKIE_LENGTH * sizeof(decode));
+    strncpy(buf,cs,COOKIE_LENGTH * sizeof(decode));
     hash=newHV();
 
 	value_flag = 1;
