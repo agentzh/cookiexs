@@ -19,6 +19,8 @@ MANIFEST.SKIP
 META.yml
 README
 t/01-sanity.t
+t/02-overflow.t
+t/03-bug.t
 t/99-pod-coverage.t
 t/99-pod.t
 util.c

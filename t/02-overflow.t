@@ -1,11 +1,8 @@
 use strict;
 use warnings;
 
-use Test::More 'no_plan';
-use Data::Dumper;
+use Test::More tests => 6;
 BEGIN { use_ok('Cookie::XS'); }
-
-$Data::Dumper::Sortkeys = 1;
 
 my $COOKIE_LEN_LIMIT = 1024 * 4;
 

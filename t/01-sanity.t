@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More 'no_plan';
+use Test::More tests => 2;
 use Data::Dumper;
 BEGIN { use_ok('Cookie::XS'); }
 
