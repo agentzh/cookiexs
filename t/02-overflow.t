@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 6;
+use Test::More tests => 7;
 BEGIN { use_ok('Cookie::XS'); }
 
 my $COOKIE_LEN_LIMIT = 1024 * 4;
