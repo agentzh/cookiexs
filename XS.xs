@@ -1,9 +1,8 @@
-
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
 #include "INLINE.h"
-#define COOKIE_LENGTH 2048
+#define COOKIE_LENGTH 4096
 
 //static char *encode_hex_str(const char*, char **);
 extern char** XS_unpack_charPtrPtr(SV* arg);
@@ -12,31 +11,31 @@ extern void XS_pack_charPtrPtr( SV* arg, char** array, int count);
 int decode_hex_str(const char *,char **);
 
 SV* parse_cookie(char * cs) {
-    int i ;
+    int i,value_flag ;  
     char *p,*q,*decode;
     char buf[COOKIE_LENGTH];
     AV *array;
     HV *hash;
 
     decode=(char *) malloc (COOKIE_LENGTH);
-
-    strcpy(buf,cs);
-
+    strncpy(buf,cs,COOKIE_LENGTH);
     hash=newHV();
+
+	value_flag = 1;
 
     p = q = buf;
     while(*p){
-        if(*p=='=')    {
+        if(*p=='=' && value_flag ){
             array = newAV();
             *p=0; p++;
             decode_hex_str(q,&decode);
-             hv_store(hash,decode,strlen(decode),newRV_noinc((SV *)array),0);
-            q=p;
+            hv_store(hash,decode,strlen(decode),newRV_noinc((SV *)array),0);
+            q=p; value_flag=0;
         } else if( *p==';' && *(p+1) == ' ') {
             *p = 0; p+=2;
             decode_hex_str(q,&decode);
             av_push(array,newSVpvf("%s",decode));
-            q=p;
+            q=p; value_flag=1;
         } else if( *p==';' || *p == '&' )    {
             *p=0; p++;
             decode_hex_str(q,&decode);
