@@ -1,13 +1,18 @@
+0.08 Mar 20 2008
+* Fixed the foo=ba=r bug reported by RT #34238.
+* Fixed a stack overflow when input cookies are too big.
+* Added a lot of stuff to the POD documentation.
+
 0.07 Mar 6, 2008
 * Fixed "const char*" in XS.xs to make it parsable by perl 5.6.x
 
-0.06 Mar 3, 2008
+0.06 Mar 3 2008
 * Fixed the duplicate BUGS section in the POD.
 * Fixed the version number in META.yml.
 
 0.05 Mar 3, 2008
 * Fixed a lot of typos in the POD.
 
-0.04 Mar 3, 2008
+0.04 Mar 3 2008
 * initial CPAN release
 

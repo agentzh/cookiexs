@@ -2,7 +2,7 @@ NAME
     Cookie::XS - HTTP Cookie parser in C
 
 VERSION
-    This document describes Cookie::XS 0.07 released on March 6, 2008.
+    This document describes Cookie::XS 0.08 released on March 20, 2008.
 
 SYNOPSIS
         use Cookie::XS;
@@ -48,6 +48,25 @@ METHODS
     performance considerations).
 
     We'll implement some cookie dump methods in the near future.
+
+    "$ref = Cookie::XS->parse($raw_cookie)"
+        Parses $raw_cookie and returns the reference of a hash of arrays.
+        The keys of the hash are cookie variables' names while the values of
+        the hash are lists of cookie variable's values.
+
+        There is a length limit on the $raw_cookie. If $raw_cookie is longer
+        than 4 KB (i.e. 4 * 1024 bytes, excluding the trailing '\0'), the
+        overflowing part will be truncated.
+
+        Also note that, "fetch" does not assume any encoding on the cookie
+        values. It just decodes the encoded entries verbatim and treat them
+        as plain "binary" stuff.
+
+    "$ref = Cookie::XS->fetch()"
+        Reads the raw cookie from the "HTTP_COOKIE" and "COOKIE"
+        environments (which are usually set by HTTP servers like lighttd or
+        apache) and then parses the value using the "parse" method and
+        finally returns the results.
 
 SOURCE CONTROL
     For the very latest version of this module, check out the source from

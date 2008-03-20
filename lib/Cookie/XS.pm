@@ -7,7 +7,7 @@ our $VERSION;
 
 use XSLoader;
 BEGIN {
-    $VERSION = '0.07';
+    $VERSION = '0.08';
     XSLoader::load(__PACKAGE__, $VERSION);
 }
 
@@ -30,7 +30,7 @@ Cookie::XS - HTTP Cookie parser in C
 
 =head1 VERSION
 
-This document describes Cookie::XS 0.07 released on March 6, 2008.
+This document describes Cookie::XS 0.08 released on March 20, 2008.
 
 =head1 SYNOPSIS
 
