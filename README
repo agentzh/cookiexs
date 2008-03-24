@@ -2,7 +2,7 @@ NAME
     Cookie::XS - HTTP Cookie parser in C
 
 VERSION
-    This document describes Cookie::XS 0.08 released on March 20, 2008.
+    This document describes Cookie::XS 0.09 released on March 24, 2008.
 
 SYNOPSIS
         use Cookie::XS;

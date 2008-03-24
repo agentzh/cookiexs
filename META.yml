@@ -15,4 +15,4 @@ no_index:
     - t
 requires: 
   perl: 5.6.1
-version: 0.08
+version: 0.09
