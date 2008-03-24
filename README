@@ -68,6 +68,9 @@ METHODS
         apache) and then parses the value using the "parse" method and
         finally returns the results.
 
+TODO
+    *   Removing trailing spaces in cookie values.
+
 SOURCE CONTROL
     For the very latest version of this module, check out the source from
     the SVN repos below:

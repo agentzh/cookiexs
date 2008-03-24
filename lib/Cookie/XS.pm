@@ -18,7 +18,7 @@ sub fetch {
 }
 
 sub parse {
-    parse_cookie($_[1]);
+    _parse_cookie($_[1]);
 }
 
 1;
@@ -88,6 +88,16 @@ Reads the raw cookie from the C<HTTP_COOKIE> and C<COOKIE> environments
 (which are usually set by HTTP servers like lighttd or apache) and then
 parses the value using the C<parse> method and finally returns the
 results.
+
+=back
+
+=head1 TODO
+
+=over
+
+=item *
+
+Removing trailing spaces in cookie values.
 
 =back
 

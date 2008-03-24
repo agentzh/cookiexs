@@ -1,7 +1,11 @@
+0.09 XXX
+* Enabled the tests in 99-pod-coverage.t.
+
 0.08 Mar 20 2008
 * Fixed the foo=ba=r bug reported by RT #34238.
 * Fixed a stack overflow when input cookies are too big.
 * Added a lot of stuff to the POD documentation.
+* Cleaned up the XS code a bit.
 
 0.07 Mar 6 2008
 * Fixed "const char*" in XS.xs to make it parsable by perl 5.6.x

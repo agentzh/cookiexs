@@ -2,55 +2,63 @@
 #include "perl.h"
 #include "XSUB.h"
 #include "INLINE.h"
-#define COOKIE_LENGTH 4096
+
+#define COOKIE_LEN_LIMIT 1024 * 4
 
 //static char *encode_hex_str(const char*, char **);
 extern char** XS_unpack_charPtrPtr(SV* arg);
 extern void XS_pack_charPtrPtr( SV* arg, char** array, int count);
 
-int decode_hex_str(const char *,char **);
+char Buffer[COOKIE_LEN_LIMIT];
 
-SV* parse_cookie(char * cs) {
-    int i,value_flag ;  
-    char *p,*q,*decode;
-    char buf[COOKIE_LENGTH];
+static int _decode_hex_str(const char*, char **);
+
+SV* _parse_cookie(char* cs) {
+    int i, value_flag;
+    char* p;
+    char* q;
+    char* decode;
     AV *array;
     HV *hash;
 
-    decode=(char *) malloc (COOKIE_LENGTH * sizeof(decode));
-    strncpy(buf,cs,COOKIE_LENGTH);
-    hash=newHV();
+    decode = (char *) malloc (COOKIE_LEN_LIMIT * sizeof(decode));
+    if (decode == NULL) {
+        croak("Cookie::XS::parse - Failed to malloc");
+    }
+    strncpy(Buffer, cs, COOKIE_LEN_LIMIT);
+    Buffer[COOKIE_LEN_LIMIT-1] = '\0';
+    hash = newHV();
 
-	value_flag = 1;
+    value_flag = 1;
 
-    p = q = buf;
-    while(*p){
-        if(*p=='=' && value_flag ){
+    p = q = Buffer;
+    while (*p) {
+        if (*p=='=' && value_flag ){
             array = newAV();
-            *p=0; p++;
-            decode_hex_str(q,&decode);
-            hv_store(hash,decode,strlen(decode),newRV_noinc((SV *)array),0);
-            q=p; value_flag=0;
-        } else if( *p==';' && *(p+1) == ' ') {
-            *p = 0; p+=2;
-            decode_hex_str(q,&decode);
-            av_push(array,newSVpvf("%s",decode));
-            q=p; value_flag=1;
-        } else if( *p==';' || *p == '&' )    {
-            *p=0; p++;
-            decode_hex_str(q,&decode);
-            av_push(array,newSVpvf("%s",decode));
-            q=p;
+            *p = 0; p++;
+            _decode_hex_str(q, &decode);
+            hv_store(hash, decode, strlen(decode), newRV_noinc((SV *)array), 0);
+            q = p; value_flag = 0;
+        } else if ( *p == ';' && *(p+1) == ' ') {
+            *p = 0; p += 2;
+            _decode_hex_str(q, &decode);
+            av_push(array, newSVpvf("%s", decode));
+            q = p; value_flag = 1;
+        } else if ( *p == ';' || *p == '&' ) {
+            *p = 0; p++;
+            _decode_hex_str(q, &decode);
+            av_push(array, newSVpvf("%s", decode));
+            q = p;
         }
         p++;
     }
-    decode_hex_str(q,&decode);
-    av_push(array,newSVpvf("%s",decode));
-    if(decode) free(decode);
+    _decode_hex_str(q, &decode);
+    av_push(array, newSVpvf("%s", decode));
+    if (decode) free(decode);
     return newRV_noinc((SV *) hash);
 }
 
-static char *encode_hex_str(const char *str,char **out_buf)
+char *encode_hex_str(const char *str, char **out_buf)
 {
     static const char *verbatim = "-_.*";
     static const char *hex = "0123456789ABCDEF";
@@ -96,19 +104,19 @@ static int decode_hex_octet(const char *s)
 }
 
 
-int decode_hex_str(const char *str,char **out)
+int _decode_hex_str (const char *str, char **out)
 {
-    char *dest=*out;
+    char *dest = *out;
     int i, val;
 
-    memset(dest,0,COOKIE_LENGTH);
+    memset(dest, 0, COOKIE_LEN_LIMIT);
 
     if (!str && ! dest)
         return 0;
 
     // most cases won't have hex octets 
     if (!strchr(str, '%')){
-        strcpy(dest,str);
+        strcpy(dest, str);
         return 1;
     }
 
@@ -127,11 +135,11 @@ PROTOTYPES: DISABLE
 
 
 SV *
-parse_cookie (cs)
+_parse_cookie (cs)
 	char *	cs
 
 int
-decode_hex_str (str, out)
+_decode_hex_str (str, out)
 	char *	str
 	char **	out
 
