@@ -23,7 +23,7 @@ SV* _parse_cookie(char* cs) {
 
     decode = (char *) malloc (COOKIE_LEN_LIMIT * sizeof(decode));
     if (decode == NULL) {
-        croak("Cookie::XS::parse - Failed to malloc");
+        croak("CGI::Cookie::XS::parse - Failed to malloc");
     }
     strncpy(Buffer, cs, COOKIE_LEN_LIMIT);
     Buffer[COOKIE_LEN_LIMIT-1] = '\0';
@@ -129,7 +129,7 @@ int _decode_hex_str (const char *str, char **out)
 }
 
 
-MODULE = Cookie::XS	PACKAGE = Cookie::XS
+MODULE = CGI::Cookie::XS	PACKAGE = CGI::Cookie::XS
 
 PROTOTYPES: DISABLE
 
