@@ -1,9 +1,13 @@
 
 NAME
-    Cookie::XS - HTTP Cookie parser in C
+    Cookie::XS - HTTP Cookie parser in C (Please use CGI::Cookie::XS
+    instead)
 
 VERSION
-    This document describes Cookie::XS 0.09 released on March 24, 2008.
+    This document describes Cookie::XS 0.10 released on August 4, 2008.
+
+    *WARNING:* This module is deprecated now; please use CGI::Cookie::XS
+    instead.
 
 SYNOPSIS
         use Cookie::XS;

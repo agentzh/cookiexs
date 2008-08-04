@@ -1,3 +1,6 @@
+0.10 Aug 4 2008
+* Put a notice saying that Cookie::XS is deprecated; one should use CGI::Cookie::XS instead.
+
 0.09 Mar 24 2008
 * Enabled the tests in 99-pod-coverage.t.
 

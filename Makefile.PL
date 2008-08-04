@@ -14,6 +14,9 @@ cc_optimize_flags '-g3';
 can_cc or die "This module requires a C compiler";
 
 build_requires     ('Test::More');
+#requires           ('CGI::Cookie::XS');
+
+warn "WARNING!!! This module is now deprecated; please use CGI::Cookie::XS instead.\n";
 
 auto_install();
 WriteAll();
