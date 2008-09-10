@@ -3,7 +3,28 @@
 #include "XSUB.h"
 #include "INLINE.h"
 
+#define DDD(x)
+
+#ifndef DDD
+#define DDD(x) fprintf(stderr, "%s\n", x);
+#endif
+
 #define COOKIE_LEN_LIMIT 1024 * 4
+#ifndef NULL
+#define NULL (void*)0
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef BOOL
+#define BOOL short int
+#endif
 
 //static char *encode_hex_str(const char*, char **);
 extern char** XS_unpack_charPtrPtr(SV* arg);
@@ -15,11 +36,12 @@ static int _decode_hex_str(const char*, char **);
 
 SV* _parse_cookie(char* cs) {
     int i, value_flag;
-    char* p;
-    char* q;
+    char* p; /* moving first for look-ahead */
+    char* q; /* moving slower for tracking values */
     char* decode;
-    AV *array;
-    HV *hash;
+    AV *array = NULL;
+    HV *hash = NULL;
+    BOOL parsing_value = FALSE;
 
     decode = (char *) malloc (COOKIE_LEN_LIMIT * sizeof(decode));
     if (decode == NULL) {
@@ -29,32 +51,52 @@ SV* _parse_cookie(char* cs) {
     Buffer[COOKIE_LEN_LIMIT-1] = '\0';
     hash = newHV();
 
-    value_flag = 1;
 
-    p = q = Buffer;
+    p = Buffer;
+    DDD("before loop");
+    while (*p == ' ' || *p == '\t') p++; // remove leading spaces
+    q = p;
     while (*p) {
-        if (*p=='=' && value_flag ){
+        //DDD("in loop");
+        if (*p == '=' && !parsing_value ){
             array = newAV();
-            *p = 0; p++;
+            *p = '\0'; p++;
             _decode_hex_str(q, &decode);
-            hv_store(hash, decode, strlen(decode), newRV_noinc((SV *)array), 0);
-            q = p; value_flag = 0;
-        } else if ( *p == ';' && *(p+1) == ' ') {
-            *p = 0; p += 2;
-            _decode_hex_str(q, &decode);
-            av_push(array, newSVpvf("%s", decode));
-            q = p; value_flag = 1;
-        } else if ( *p == ';' || *p == '&' ) {
-            *p = 0; p++;
-            _decode_hex_str(q, &decode);
-            av_push(array, newSVpvf("%s", decode));
             q = p;
+            hv_store(
+                hash, decode, strlen(decode), newRV_noinc((SV *)array), 0
+            );
+            //array = NULL;
+            parsing_value = TRUE;
+        } else if (*p == ';' || *p == ',') {
+            *p = '\0';
+            p++;
+            while (*p == ' ')
+                p++;
+            _decode_hex_str(q, &decode);
+            q = p;
+            if (parsing_value && array != NULL)
+                av_push(array, newSVpvf("%s", decode));
+            parsing_value = FALSE;
+        } else if (*p == ';' || *p == '&') { // find a second value
+            *p = 0; p++;
+            _decode_hex_str(q, &decode);
+            q = p;
+            if (parsing_value && array != NULL)
+                av_push(array, newSVpvf("%s", decode));
         }
         p++;
     }
-    _decode_hex_str(q, &decode);
-    av_push(array, newSVpvf("%s", decode));
+    DDD("before decode");
+    if (*q != '\0' && parsing_value) {
+        _decode_hex_str(q, &decode);
+        DDD("before push array");
+        if (array != NULL)
+            av_push(array, newSVpvf("%s", decode));
+        DDD("after push array");
+    }
     if (decode) free(decode);
+    DDD("before return");
     return newRV_noinc((SV *) hash);
 }
 

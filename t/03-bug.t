@@ -1,12 +1,46 @@
-use strict;
-use warnings;
+use t::TestCookie;
 
-use Test::More 'no_plan';
-BEGIN { use_ok('Cookie::XS'); }
+plan tests => 1 * blocks();
 
+#test 'CGI::Cookie';
+run_tests;
+
+__DATA__
+
+=== TEST 1: successive =
 # http://rt.cpan.org/Public/Bug/Display.html?id=34238
-my $res = Cookie::XS->parse("foo=ba=r");
-ok $res, 'res is true';
-ok $res->{foo}, 'variable foo found';
-is $res->{foo}->[0], 'ba=r', 'the value of foo is okay';
+--- cookie
+foo=ba=r
+--- out
+$VAR1 = {
+          'foo' => [
+                     'ba=r'
+                   ]
+        };
+
+
+
+=== TEST 2: empty cookie
+# http://rt.cpan.org/Public/Bug/Display.html?id=39120
+--- cookie
+--- out
+$VAR1 = {};
+
+
+
+=== TEST 3: invalid cookie (1)
+# http://rt.cpan.org/Public/Bug/Display.html?id=39120
+--- cookie
+a
+--- out
+$VAR1 = {};
+
+
+
+=== TEST 4: invalid cookie (2)
+# http://rt.cpan.org/Public/Bug/Display.html?id=39120
+--- cookie
+this-is-not-a-cookie
+--- out
+$VAR1 = {};
 
