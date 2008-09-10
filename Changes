@@ -1,3 +1,9 @@
+0.12 Arg 4 2008
+* Fixed a typo in the POD.
+
+0.11 Aug 4 2008
+* Renamed the module to CGI::Cookie::XS.
+
 0.10 Aug 4 2008
 * Put a notice saying that Cookie::XS is deprecated; one should use CGI::Cookie::XS instead.
 

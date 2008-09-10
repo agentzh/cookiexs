@@ -1,19 +1,15 @@
 
 NAME
-    Cookie::XS - HTTP Cookie parser in C (Please use CGI::Cookie::XS
-    instead)
+    CGI::Cookie::XS - HTTP Cookie parser in C
 
 VERSION
-    This document describes Cookie::XS 0.10 released on August 4, 2008.
-
-    *WARNING:* This module is deprecated now; please use CGI::Cookie::XS
-    instead.
+    This document describes CGI::Cookie::XS 0.12 released on August 4, 2008.
 
 SYNOPSIS
-        use Cookie::XS;
+        use CGI::Cookie::XS;
 
         my $raw_cookie = 'foo=a%20phrase;haha; bar=yes%2C%20a%20phrase; baz=%5Ewibble&leiyh; qux=%27';
-        my $res = Cookie::XS->parse($raw_cookie);
+        my $res = CGI::Cookie::XS->parse($raw_cookie);
         # $res is something like:
         #    {
         #      'bar' => [
@@ -33,7 +29,7 @@ SYNOPSIS
         #    };
 
         # or directly read raw cookies from the CGI environments:
-        $res = Cookie::XS->fetch;
+        $res = CGI::Cookie::XS->fetch;
 
 DESCRIPTION
     This module implements a very simple parser for cookies used in HTTP
@@ -41,9 +37,9 @@ DESCRIPTION
     slow according to the profiling results for our OpenResty project, hence
     the rewrite in C.
 
-    This library is still in pre-alpha stage and the API is still in flux.
-    We're just following the "release early, releaes often" guideline. So
-    please check back often ;)
+    This library is still in beta stage and the API is still in flux. We're
+    just following the "release early, releaes often" guideline. So please
+    check back often ;)
 
 METHODS
     We currently provide 2 static methods, "parse" and "fetch". They work
@@ -54,7 +50,7 @@ METHODS
 
     We'll implement some cookie dump methods in the near future.
 
-    "$ref = Cookie::XS->parse($raw_cookie)"
+    "$ref = CGI::Cookie::XS->parse($raw_cookie)"
         Parses $raw_cookie and returns the reference of a hash of arrays.
         The keys of the hash are cookie variables' names while the values of
         the hash are lists of cookie variable's values.
@@ -67,7 +63,7 @@ METHODS
         values. It just decodes the encoded entries verbatim and treat them
         as plain "binary" stuff.
 
-    "$ref = Cookie::XS->fetch()"
+    "$ref = CGI::Cookie::XS->fetch()"
         Reads the raw cookie from the "HTTP_COOKIE" and "COOKIE"
         environments (which are usually set by HTTP servers like lighttd or
         apache) and then parses the value using the "parse" method and
@@ -90,7 +86,7 @@ BUGS
     comprehensive testing for our code yet. It's a TODO.
 
     Please report bugs or send wish-list to
-    <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Cookie-XS>.
+    <http://rt.cpan.org/NoAuth/Bugs.html?Dist=CGI-Cookie-XS>.
 
 SEE ALSO
     CGI::Cookie, CGI::Cookie::Simple.
