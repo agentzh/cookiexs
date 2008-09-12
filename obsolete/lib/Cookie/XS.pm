@@ -1,43 +1,29 @@
-package CGI::Cookie::XS;
+package Cookie::XS;
 
 use strict;
 use warnings;
+use base 'CGI::Cookie::XS';
 
-our $VERSION;
-
-use XSLoader;
-BEGIN {
-    $VERSION = '0.15';
-    XSLoader::load(__PACKAGE__, $VERSION);
-}
-
-sub fetch {
-    my $class = shift;
-    my $raw_cookie = $ENV{HTTP_COOKIE} || $ENV{COOKIE} or return;
-    $class->parse($raw_cookie);
-}
-
-sub parse {
-    _parse_cookie($_[1]);
-}
+our $VERSION = '0.11';
 
 1;
 __END__
 
 =head1 NAME
 
-CGI::Cookie::XS - HTTP Cookie parser in pure C
+Cookie::XS - HTTP Cookie parser in C (Please use CGI::Cookie::XS instead)
 
 =head1 VERSION
 
-This document describes CGI::Cookie::XS 0.15 released on September 11, 2008.
+This document describes Cookie::XS 0.11 released on September 12, 2008.
+
 
 =head1 SYNOPSIS
 
-    use CGI::Cookie::XS;
+    use Cookie::XS;
 
-    my $raw_cookie = 'foo=a%20phrase;haha; bar=yes%2C%20a%20phrase; baz=%5Ewibble&leiyh; qux=%27';
-    my $res = CGI::Cookie::XS->parse($raw_cookie);
+    my $raw_cookie = 'foo=a%20phrase; haha; bar=yes%2C%20a%20phrase; baz=%5Ewibble&leiyh; qux=%27';
+    my $res = Cookie::XS->parse($raw_cookie);
     # $res is something like:
     #    {
     #      'bar' => [
@@ -48,8 +34,7 @@ This document describes CGI::Cookie::XS 0.15 released on September 11, 2008.
     #                 'leiyh'
     #               ],
     #      'foo' => [
-    #                 'a phrase',
-    #                 'haha'
+    #                 'a phrase'
     #               ],
     #      'qux' => [
     #                 '\''
@@ -57,15 +42,15 @@ This document describes CGI::Cookie::XS 0.15 released on September 11, 2008.
     #    };
 
     # or directly read raw cookies from the CGI environments:
-    $res = CGI::Cookie::XS->fetch;
+    $res = Cookie::XS->fetch;
 
 =head1 DESCRIPTION
 
+B<WARNING: This module is obsolete now; please use CGI::Cookie::XS instead.>
+
 This module implements a very simple parser for cookies used in HTTP applications. We've found L<CGI::Simple::Cookie> and L<CGI::Cookie> rather slow according to the profiling results for our L<OpenResty> project, hence the rewrite in C.
 
-This library is still in B<beta> stage and the API is still in flux. We're just following the "release early, releaes often" guideline. So please check back often ;)
-
-Special effort has been made to ensure this module works in the same way as the latest L<CGI::Cookie> (i.e., the pure Perl implementation). If you find it doesn't, please let us know.
+This library is still in B<pre-alpha> stage and the API is still in flux. We're just following the "release early, releaes often" guideline. So please check back often ;)
 
 =head1 METHODS
 
@@ -75,7 +60,7 @@ We'll implement some cookie dump methods in the near future.
 
 =over
 
-=item C<< $ref = CGI::Cookie::XS->parse($raw_cookie) >>
+=item C<< $ref = Cookie::XS->parse($raw_cookie) >>
 
 Parses C<$raw_cookie> and returns the reference of a hash of arrays. The keys
 of the hash are cookie variables' names while the values of the hash are lists of cookie variable's values.
@@ -84,7 +69,7 @@ There is a length limit on the C<$raw_cookie>. If C<$raw_cookie> is longer than 
 
 Also note that, C<fetch> does not assume any encoding on the cookie values. It just decodes the encoded entries verbatim and treat them as plain "binary" stuff.
 
-=item C<< $ref = CGI::Cookie::XS->fetch() >>
+=item C<< $ref = Cookie::XS->fetch() >>
 
 Reads the raw cookie from the C<HTTP_COOKIE> and C<COOKIE> environments
 (which are usually set by HTTP servers like lighttd or apache) and then
@@ -118,7 +103,7 @@ us know. :)
 There must be some serious bugs lurking somewhere. We haven't done comprehensive testing for our code yet. It's a TODO.
 
 Please report bugs or send wish-list to
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=CGI-Cookie-XS>.
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Cookie-XS>.
 
 =head1 SEE ALSO
 

@@ -1,20 +1,5 @@
-0.15 Sep 11 2008
-* Some minor optimization (";" is never actually used to separate multiple values for a single key).
-* Added Filter::Util::Call to the dependency list.
-
-0.14 Sep 10 2008
-* Carefully reviewed the old implementation and gave it a massive rewrite.
-* Fixed the issue in #39120
-* Fixed a lot of incompatibilities with the latest CGI::Cookie.
-
-0.13 Arg 4 2008
-* Fixed the module name in the test suite; we now use CGI::Cookie::XS, rather than Cookie::XS.
-
-0.12 Arg 4 2008
-* Fixed a typo in the POD.
-
-0.11 Aug 4 2008
-* Renamed the module to CGI::Cookie::XS.
+0.11 Sep 12 2008
+* Now make it a subclass of CGI::Cookie::XS.
 
 0.10 Aug 4 2008
 * Put a notice saying that Cookie::XS is deprecated; one should use CGI::Cookie::XS instead.

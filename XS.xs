@@ -78,7 +78,7 @@ SV* _parse_cookie(char* cs) {
             if (parsing_value && array != NULL)
                 av_push(array, newSVpvf("%s", decode));
             parsing_value = FALSE;
-        } else if (*p == ';' || *p == '&') { // find a second value
+        } else if (*p == '&') { // find a second value
             *p = 0; p++;
             _decode_hex_str(q, &decode);
             q = p;

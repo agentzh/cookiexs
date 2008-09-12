@@ -14,7 +14,7 @@ cc_optimize_flags '-g3';
 can_cc or die "This module requires a C compiler";
 
 #build_requires     ('Test::More');
-#requires           ('CGI::Cookie::XS');
+requires           ('Filter::Util::Call');
 use_test_base();
 
 auto_install();
