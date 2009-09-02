@@ -136,6 +136,7 @@ L<CGI::Cookie>, L<CGI::Cookie::Simple>.
 =head1 COPYRIGHT
 
 Copyright (c) 2008 by Yahoo! China EEEE Works, Alibaba Inc.
+
 Copyright (c) 2009 by Taobao Inc., Alibaba Group.
 
 =head1 License
