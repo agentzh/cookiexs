@@ -10,4 +10,4 @@
 ^XS\.bs$
 ^XS\.c$
 ^XS\.o$
-
+^obsolete

@@ -7,7 +7,7 @@ our $VERSION;
 
 use XSLoader;
 BEGIN {
-    $VERSION = '0.15';
+    $VERSION = '0.16';
     XSLoader::load(__PACKAGE__, $VERSION);
 }
 
@@ -30,13 +30,13 @@ CGI::Cookie::XS - HTTP Cookie parser in pure C
 
 =head1 VERSION
 
-This document describes CGI::Cookie::XS 0.15 released on September 11, 2008.
+This document describes CGI::Cookie::XS 0.16 released on September 12, 2008.
 
 =head1 SYNOPSIS
 
     use CGI::Cookie::XS;
 
-    my $raw_cookie = 'foo=a%20phrase;haha; bar=yes%2C%20a%20phrase; baz=%5Ewibble&leiyh; qux=%27';
+    my $raw_cookie = 'foo=a%20phrase;weird; bar=yes%2C%20a%20phrase; baz=%5Ewibble&leiyh; qux=%27';
     my $res = CGI::Cookie::XS->parse($raw_cookie);
     # $res is something like:
     #    {
@@ -48,8 +48,7 @@ This document describes CGI::Cookie::XS 0.15 released on September 11, 2008.
     #                 'leiyh'
     #               ],
     #      'foo' => [
-    #                 'a phrase',
-    #                 'haha'
+    #                 'a phrase'
     #               ],
     #      'qux' => [
     #                 '\''
