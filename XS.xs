@@ -60,7 +60,12 @@ SV* _parse_cookie(char* cs) {
         //DDD("in loop");
         if (*p == '=' && !parsing_value ){
             array = newAV();
-            *p = '\0'; p++;
+            *p = '\0';
+
+            // Only move on if not the end of the cookie value
+            if (*(p+1) != ';' && *(p+1) != ',' && *(p+1) != '\0')
+              p++;
+
             _decode_hex_str(q, &decode);
             q = p;
             hv_store(
@@ -75,7 +80,7 @@ SV* _parse_cookie(char* cs) {
                 p++;
             _decode_hex_str(q, &decode);
             q = p;
-            if (parsing_value && array != NULL)
+            if (*decode != '\0' && parsing_value && array != NULL)
                 av_push(array, newSVpvf("%s", decode));
             parsing_value = FALSE;
         } else if (*p == '&') { // find a second value

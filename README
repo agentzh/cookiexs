@@ -2,8 +2,8 @@ NAME
     CGI::Cookie::XS - HTTP Cookie parser in pure C
 
 VERSION
-    This document describes CGI::Cookie::XS 0.16 released on September 12,
-    2008.
+    This document describes CGI::Cookie::XS 0.17 released on September 2,
+    2009.
 
 SYNOPSIS
         use CGI::Cookie::XS;
@@ -99,7 +99,8 @@ AUTHOR
     agentzh "<agentzh at yahoo.cn>"
 
 COPYRIGHT
-    Copyright (c) 2008 by Yahoo! China EEEE Works, Alibaba Inc.
+    Copyright (c) 2008 by Yahoo! China EEEE Works, Alibaba Inc. Copyright
+    (c) 2009 by Taobao Inc., Alibaba Group.
 
 License
     The "MIT" License

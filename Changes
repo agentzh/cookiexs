@@ -1,3 +1,7 @@
+0.17 Sep 2 2009
+* fixed a parser bug when variables take empty values like "foo=",
+  reported and fixed by Colin Keith (rt.cpan.org #49302)
+
 0.16 Sep 12 2008
 * Fixed an issue in POD.
 

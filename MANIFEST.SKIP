@@ -11,3 +11,4 @@
 ^XS\.c$
 ^XS\.o$
 ^obsolete
+\.git

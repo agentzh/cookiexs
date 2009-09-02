@@ -7,6 +7,7 @@ license             ('perl');
 author              ('Agent Zhang <agentzh@yahoo.cn>');
 perl_version        ('5.006001');
 all_from            ('lib/CGI/Cookie/XS.pm');
+repository          ('http://github.com/agentzh/cookiexs/tree/master');
 
 cc_inc_paths    '.';
 cc_files        (glob("*.c"), (-e 'XS.c' ? () : 'XS.c'));

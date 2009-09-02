@@ -44,3 +44,22 @@ this-is-not-a-cookie
 --- out
 $VAR1 = {};
 
+
+
+=== TEST 5: empty values
+rt.cpan.org #49302
+--- cookie: lastvisit=1251731074; sessionlogin=1251760758; username=; password=; remember_login=; admin_button=
+--- out
+$VAR1 = {
+          'admin_button' => [],
+          'lastvisit' => [
+                           '1251731074'
+                         ],
+          'password' => [],
+          'remember_login' => [],
+          'sessionlogin' => [
+                              '1251760758'
+                            ],
+          'username' => []
+        };
+
