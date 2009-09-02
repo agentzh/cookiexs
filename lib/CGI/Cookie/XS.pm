@@ -62,8 +62,6 @@ This document describes CGI::Cookie::XS 0.18 released on September 2, 2009.
 
 This module implements a very simple parser for cookies used in HTTP applications. We've found L<CGI::Simple::Cookie> and L<CGI::Cookie> rather slow according to the profiling results for our L<OpenResty> project, hence the rewrite in C.
 
-This library is still in B<beta> stage and the API is still in flux. We're just following the "release early, releaes often" guideline. So please check back often ;)
-
 Special effort has been made to ensure this module works in the same way as the latest L<CGI::Cookie> (i.e., the pure Perl implementation). If you find it doesn't, please let us know.
 
 =head1 METHODS
