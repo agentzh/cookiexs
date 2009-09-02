@@ -105,9 +105,9 @@ Removing trailing spaces in cookie values.
 =head1 SOURCE CONTROL
 
 For the very latest version of this module, check out the source from
-the SVN repos below:
+the Git repos below:
 
-L<http://svn.openfoundry.org/cookieparser>
+L<http://github.com/agentzh/cookiexs/>
 
 There is anonymous access to all. If you'd like a commit bit, please let
 us know. :)
