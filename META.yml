@@ -19,4 +19,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/agentzh/cookiexs/tree/master
-version: 0.17
+version: 0.18

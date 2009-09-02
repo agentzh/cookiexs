@@ -2,7 +2,7 @@ NAME
     CGI::Cookie::XS - HTTP Cookie parser in pure C
 
 VERSION
-    This document describes CGI::Cookie::XS 0.17 released on September 2,
+    This document describes CGI::Cookie::XS 0.18 released on September 2,
     2009.
 
 SYNOPSIS
@@ -77,9 +77,9 @@ TODO
 
 SOURCE CONTROL
     For the very latest version of this module, check out the source from
-    the SVN repos below:
+    the Git repos below:
 
-    <http://svn.openfoundry.org/cookieparser>
+    <http://github.com/agentzh/cookiexs/>
 
     There is anonymous access to all. If you'd like a commit bit, please let
     us know. :)
