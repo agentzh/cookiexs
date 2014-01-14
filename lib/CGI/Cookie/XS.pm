@@ -84,7 +84,7 @@ Also note that, C<fetch> does not assume any encoding on the cookie values. It j
 =item C<< $ref = CGI::Cookie::XS->fetch() >>
 
 Reads the raw cookie from the C<HTTP_COOKIE> and C<COOKIE> environments
-(which are usually set by HTTP servers like lighttd or apache) and then
+(which are usually set by HTTP servers like lighttpd or apache) and then
 parses the value using the C<parse> method and finally returns the
 results.
 
