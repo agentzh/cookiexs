@@ -37,7 +37,7 @@ DESCRIPTION
     the rewrite in C.
 
     This library is still in beta stage and the API is still in flux. We're
-    just following the "release early, releaes often" guideline. So please
+    just following the "release early, release often" guideline. So please
     check back often ;)
 
     Special effort has been made to ensure this module works in the same way
